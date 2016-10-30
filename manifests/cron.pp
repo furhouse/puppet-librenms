@@ -17,21 +17,21 @@
 # Copyright (C) 2016 Andre Timmermann
 #
 class librenms::cron (
-  $librenms_user = hiera('librenms::params::librenms_user' , $librenms::cron::librenms_user),
-  $install_dir = hiera('librenms::params::install_dir' , $librenms::cron::install_dir),
-  $poller_threads = hiera('librenms::params::poller_threads' , $librenms::poller_threads),
-  $cron_poller_wrapper_minute = hiera('librenms::params::cron_poller_wrapper_minute' , $librenms::cron::cron_poller_wrapper_minute),
-  $cron_poller_wrapper_hour = hiera('librenms::params::cron_poller_wrapper_hour' , $librenms::cron::cron_poller_wrapper_hour),
-  $cron_discover_new_minute = hiera('librenms::params::cron_discover_new_minute' , $librenms::cron::cron_discover_new_minute),
-  $cron_discover_new_hour = hiera('librenms::params::cron_discover_new_hour' , $librenms::cron::cron_discover_new_hour),
-  $cron_discover_all_minute = hiera('librenms::params::cron_discover_all_minute' , $librenms::cron::cron_discover_all_minute),
-  $cron_discover_all_hour = hiera('librenms::params::cron_discover_all_hour' , $librenms::cron::cron_discover_all_hour),
-  $cron_daily_minute = hiera('librenms::params::cron_daily_minute' , $librenms::cron::cron_daily_minute),
-  $cron_daily_hour = hiera('librenms::params::cron_daily_hour' , $librenms::cron::cron_daily_hour),
-  $cron_alerts_minute = hiera('librenms::params::cron_alerts_minute' , $librenms::cron::cron_alerts_minute),
-  $cron_alerts_hour = hiera('librenms::params::cron_alerts_hour' , $librenms::cron::cron_alerts_hour),
-  $cron_check_services_minute = hiera('librenms::params::cron_check_services_minute' , $librenms::cron::cron_check_services_minute),
-  $cron_check_services_hour = hiera('librenms::params::cron_check_services_hour' , $librenms::cron::cron_check_services_hour),
+  $librenms_user              = $librenms::librenms_user,
+  $install_dir                = $librenms::install_dir,
+  $poller_threads             = $librenms::poller_threads,
+  $cron_poller_wrapper_minute = $librenms::cron_poller_wrapper_minute,
+  $cron_poller_wrapper_hour   = $librenms::cron_poller_wrapper_hour,
+  $cron_discover_new_minute   = $librenms::cron_discover_new_minute,
+  $cron_discover_new_hour     = $librenms::cron_discover_new_hour,
+  $cron_discover_all_minute   = $librenms::cron_discover_all_minute,
+  $cron_discover_all_hour     = $librenms::cron_discover_all_hour,
+  $cron_daily_minute          = $librenms::cron_daily_minute,
+  $cron_daily_hour            = $librenms::cron_daily_hour,
+  $cron_alerts_minute         = $librenms::cron_alerts_minute,
+  $cron_alerts_hour           = $librenms::cron_alerts_hour,
+  $cron_check_services_minute = $librenms::cron_check_services_minute,
+  $cron_check_services_hour   = $librenms::cron_check_services_hour,
 ) inherits librenms::params {
 
   cron {

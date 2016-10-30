@@ -6,8 +6,6 @@
 #
 # Please refer to params.pp for all parameters used in this module.
 #
-# Warning: you HAVE to define a password for the databse.
-#
 # === Authors
 #
 # Andre Timmermann librenms@darktim.de
@@ -17,24 +15,21 @@
 # Copyright (C) 2016 Andre Timmermann
 #
 class librenms::mysql (
-  $mysql_db = hiera('librenms::params::mysql_db' , $librenms::params::mysql_db),
-  $mysql_user = hiera('librenms::params::mysql_pass' , $librenms::params::mysql_user),
-  $mysql_pass = hiera('librenms::params::mysql_user' , $librenms::params::mysql_pass),
+  $mysql_db   = $librenms::mysql_db,
+  $mysql_user = $librenms::mysql_user,
+  $mysql_pass = $librenms::mysql_pass,
 ) inherits librenms::params {
 
-  # fail if db password is empty
-  if $mysql_pass == '' {
-    fail('mysql_pass may not be empty')
-  }
+  if $librenms::configure_mysql {
+    include ::mysql::server
 
-  # deploy databases
-  mysql::db {
-    [$mysql_db]:
+    # deploy databases
+    mysql::db { $mysql_db:
       user     => $mysql_user,
       password => $mysql_pass,
       host     => 'localhost',
       grant    => ['all'],
       require  => Class['mysql::server'];
+    }
   }
-
 }

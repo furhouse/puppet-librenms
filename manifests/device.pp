@@ -39,21 +39,24 @@
 #   It may be needed to change the hostname of the node seen by librenms. For example
 #   if you have a device with a random hostname in a cloud. This defaukts to the fqdn.
 #
-class librenms::device
-(
-  $manage = true,
-  $install_dir = hiera('librenms::params::install_dir' , $librenms::params::install_dir),
-  $mysql_db = hiera('librenms::params::mysql_db' , $librenms::params::mysql_db),
-  $community = undef,
-  $user = undef,
-  $pass = undef,
-  $proto = 'v3',
-  $nodename = $::fqdn
+class librenms::device (
+  $manage      = true,
+  $install_dir = $librenms::install_dir,
+  $mysql_db    = $librenms::mysql_db,
+  $community   = undef,
+  $user        = undef,
+  $pass        = undef,
+  $proto       = 'v3',
+  $nodename    = $::fqdn
 ) inherits librenms::params {
   validate_bool($manage)
+  validate_string($community, $user, $proto)
+
+  if $pass {
+    validate_string($pass)
+  }
 
   if $manage {
-
     $basecmd = "${install_dir}/addhost.php ${nodename}"
 
     case $proto {
