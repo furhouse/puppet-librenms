@@ -15,4 +15,3 @@ class librenms::add_device {
   # Add devices to librenms
   Exec <<| tag == 'librenms-add_device' |>>
 }
-
