@@ -1,7 +1,0 @@
----
-  :backends:
-    - yaml
-  :yaml:
-    :datadir: /tmp/data
-  :hierarchy:
-    - host-dev-dc01
