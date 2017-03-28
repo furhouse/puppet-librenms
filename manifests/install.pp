@@ -23,7 +23,7 @@ class librenms::install (
   file { $install_dir:
     ensure => directory,
     owner  => $librenms_user,
-    group  => $librenms_group,
+    group  => $librenms_user,
     mode   => '0755';
   }
 
@@ -38,7 +38,7 @@ class librenms::install (
   file { [ "${install_dir}/rrd", "${install_dir}/logs" ]:
     ensure  => directory,
     owner   => $librenms_user,
-    group   => 'www-data',
+    group   => $librenms_user,
     mode    => '0775',
     require => Vcsrepo[$install_dir];
   }
